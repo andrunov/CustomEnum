@@ -1,49 +1,23 @@
-// CUSTOM ENUM TEMPLATE - HARDCODED ENUM VALUES
+// SIMPLE CUSTOM ENUM WITH CUSTOM STRING VALUES
 public enum {{classname}} {
-MARRIED("MARRIED"),
-SINGLE("SINGLE"),
-DIVORCED("DIVORCED"),
-WIDOWED("WIDOWED");
+{{#allowableValues}}
+    {{#enumVars}}
+        {{name}}("{{#vendorExtensions.x-enum-labels}}{{vendorExtensions.x-enum-labels.{{value}}}}{{/vendorExtensions.x-enum-labels}}{{^vendorExtensions.x-enum-labels}}{{value}}{{/vendorExtensions.x-enum-labels}}"){{^-last}},{{/-last}}{{#-last}};{{/-last}}
+        {{/enumVars}}
+        {{/allowableValues}}
 
-private String value;
-private String label;
-private String legacyCode;
+        private String value;
 
-{{classname}}(String value) {
-this.value = value;
-this.label = getLabel(value);
-this.legacyCode = getLegacyCode(value);
-}
+        {{classname}}(String value) {
+        this.value = value;
+        }
 
-public String getValue() {
-return value;
-}
+        public String getValue() {
+        return value;
+        }
 
-public String getLabel() {
-return label;
-}
-
-public String getLegacyCode() {
-return legacyCode;
-}
-
-private String getLabel(String value) {
-switch(value) {
-case "MARRIED": return "Женат / За мужем";
-case "SINGLE": return "Холост / Не замужем";
-case "DIVORCED": return "Разведен(а)";
-case "WIDOWED": return "Вдовец / Вдова";
-default: return value;
-}
-}
-
-private String getLegacyCode(String value) {
-switch(value) {
-case "MARRIED": return "1";
-case "SINGLE": return "2";
-case "DIVORCED": return "3";
-case "WIDOWED": return "4";
-default: return value;
-}
-}
-}
+        @Override
+        public String toString() {
+        return this.value;
+        }
+        }
