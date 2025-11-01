@@ -1,23 +1,24 @@
-// SIMPLE CUSTOM ENUM WITH CUSTOM STRING VALUES
+// CUSTOM ENUM TEMPLATE - SIMPLE HARDCODED
 public enum {{classname}} {
-{{#allowableValues}}
-    {{#enumVars}}
-        {{name}}("{{#vendorExtensions.x-enum-labels}}{{vendorExtensions.x-enum-labels.{{value}}}}{{/vendorExtensions.x-enum-labels}}{{^vendorExtensions.x-enum-labels}}{{value}}{{/vendorExtensions.x-enum-labels}}"){{^-last}},{{/-last}}{{#-last}};{{/-last}}
-        {{/enumVars}}
-        {{/allowableValues}}
+// Auto-generated custom enum
+// Values are hardcoded for now
+MARRIED("Женат / За мужем"),
+SINGLE("Холост / Не замужем"),
+DIVORCED("Разведен(а)"),
+WIDOWED("Вдовец / Вдова");
 
-        private String value;
+private String displayValue;
 
-        {{classname}}(String value) {
-        this.value = value;
-        }
+{{classname}}(String displayValue) {
+this.displayValue = displayValue;
+}
 
-        public String getValue() {
-        return value;
-        }
+public String getDisplayValue() {
+return displayValue;
+}
 
-        @Override
-        public String toString() {
-        return this.value;
-        }
-        }
+@Override
+public String toString() {
+return this.displayValue;
+}
+}
