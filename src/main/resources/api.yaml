@@ -1,47 +1,13 @@
 openapi: 3.0.0
 info:
-  title: Custom Enum Test API
+  title: Simple Enum Test API
   version: 1.0.0
-  description: API для тестирования кастомных enum с кириллическими labels
 
 paths:
-  /users:
+  /user/{userId}/marital-status:
     get:
-      summary: Получить список пользователей
-      operationId: getUsers
-      responses:
-        '200':
-          description: Успешный ответ
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  users:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/User'
-    post:
-      summary: Создать нового пользователя
-      operationId: createUser
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/User'
-      responses:
-        '201':
-          description: Пользователь создан
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/User'
-
-  /users/{userId}/marital-status:
-    get:
-      summary: Получить семейное положение пользователя
-      operationId: getUserMaritalStatus
+      summary: Get user marital status
+      operationId: getMaritalStatus
       parameters:
         - name: userId
           in: path
@@ -50,67 +16,15 @@ paths:
             type: integer
       responses:
         '200':
-          description: Успешный ответ
+          description: Success
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  userId:
-                    type: integer
-                  maritalStatus:
-                    $ref: '#/components/schemas/MaritalStatus'
-    put:
-      summary: Обновить семейное положение пользователя
-      operationId: updateUserMaritalStatus
-      parameters:
-        - name: userId
-          in: path
-          required: true
-          schema:
-            type: integer
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                maritalStatus:
-                  $ref: '#/components/schemas/MaritalStatus'
-      responses:
-        '200':
-          description: Семейное положение обновлено
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  userId:
-                    type: integer
-                  oldStatus:
-                    $ref: '#/components/schemas/MaritalStatus'
-                  newStatus:
-                    $ref: '#/components/schemas/MaritalStatus'
+                type: string
+                example: "MARRIED"
 
 components:
   schemas:
-    User:
-      type: object
-      properties:
-        id:
-          type: integer
-        name:
-          type: string
-        email:
-          type: string
-        maritalStatus:
-          $ref: '#/components/schemas/MaritalStatus'
-      required:
-        - id
-        - name
-        - email
-
     MaritalStatus:
       type: string
       enum:
@@ -118,24 +32,8 @@ components:
         - SINGLE
         - DIVORCED
         - WIDOWED
-      description: Семейное положение
       x-enum-labels:
         MARRIED: "Женат / За мужем"
         SINGLE: "Холост / Не замужем"
         DIVORCED: "Разведен(а)"
         WIDOWED: "Вдовец / Вдова"
-      x-legacy-codes:
-        MARRIED: "1"
-        SINGLE: "2"
-        DIVORCED: "3"
-        WIDOWED: "4"
-
-    ApiResponse:
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
-        data:
-          type: object

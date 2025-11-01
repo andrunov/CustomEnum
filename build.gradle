@@ -19,14 +19,18 @@ tasks.register('generateOpenApi', org.openapitools.generator.gradle.plugin.tasks
     configOptions = [
             dateLibrary: "java8",
             library: "native",
-            serializationLibrary: "jackson"
+            useBeanValidation: "false",
+            useSwaggerAnnotations: "false",  // Отключаем Swagger аннотации
+            openApiNullable: "false"
     ]
 
-    // Генерируем ТОЛЬКО модели
+    // Генерируем ТОЛЬКО модели, без API и лишних файлов
     globalProperties = [
             models: "",
             apis: "false",
-            supportingFiles: "false"
+            supportingFiles: "false",
+            modelTests: "false",
+            modelDocs: "false"
     ]
 }
 
@@ -42,6 +46,7 @@ dependencies {
     implementation 'javax.annotation:javax.annotation-api:1.3.2'
 
 }
+
 
 sourceSets {
     main {
