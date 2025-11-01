@@ -1,0 +1,34 @@
+openapi: 3.0.3
+info:
+  title: Title
+  description: Title
+  version: 1.0.0
+servers:
+  - url: 'https'
+paths:
+
+components:
+  schemas:
+    MaritalStatus:
+      type: string
+      enum:
+        - MARRIED
+        - SINGLE
+        - DIVORCED
+        - WIDOWED
+      x-enum-labels:
+        MARRIED: "Женат / За мужем"
+        SINGLE: "Холост / Не замужем"
+        DIVORCED: "Разведен(а)"
+        WIDOWED: "Вдовец / Вдова"
+      x-legacy-codes-1:
+        MARRIED: "1"
+        SINGLE: "2"
+        DIVORCED: "3"
+        WIDOWED: "4"
+      x-legacy-codes-2:
+        MARRIED: "M"
+        SINGLE: "S"
+        DIVORCED: "D"
+        WIDOWED: "W"
+  
