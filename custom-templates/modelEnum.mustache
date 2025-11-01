@@ -1,0 +1,49 @@
+// CUSTOM ENUM TEMPLATE - HARDCODED ENUM VALUES
+public enum {{classname}} {
+MARRIED("MARRIED"),
+SINGLE("SINGLE"),
+DIVORCED("DIVORCED"),
+WIDOWED("WIDOWED");
+
+private String value;
+private String label;
+private String legacyCode;
+
+{{classname}}(String value) {
+this.value = value;
+this.label = getLabel(value);
+this.legacyCode = getLegacyCode(value);
+}
+
+public String getValue() {
+return value;
+}
+
+public String getLabel() {
+return label;
+}
+
+public String getLegacyCode() {
+return legacyCode;
+}
+
+private String getLabel(String value) {
+switch(value) {
+case "MARRIED": return "Женат / За мужем";
+case "SINGLE": return "Холост / Не замужем";
+case "DIVORCED": return "Разведен(а)";
+case "WIDOWED": return "Вдовец / Вдова";
+default: return value;
+}
+}
+
+private String getLegacyCode(String value) {
+switch(value) {
+case "MARRIED": return "1";
+case "SINGLE": return "2";
+case "DIVORCED": return "3";
+case "WIDOWED": return "4";
+default: return value;
+}
+}
+}

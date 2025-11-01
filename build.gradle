@@ -32,6 +32,8 @@ tasks.register('generateOpenApi', org.openapitools.generator.gradle.plugin.tasks
             modelTests: "false",
             modelDocs: "false"
     ]
+
+
 }
 
 dependencies {
@@ -57,3 +59,11 @@ sourceSets {
 }
 
 compileJava.dependsOn('generateOpenApi')
+
+compileJava {
+    options.encoding = 'UTF-8'
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
