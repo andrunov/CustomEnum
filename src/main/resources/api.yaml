@@ -32,8 +32,3 @@ components:
         - SINGLE
         - DIVORCED
         - WIDOWED
-      x-enum-labels:
-        MARRIED: "Женат / За мужем"
-        SINGLE: "Холост / Не замужем"
-        DIVORCED: "Разведен(а)"
-        WIDOWED: "Вдовец / Вдова"
