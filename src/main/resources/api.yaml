@@ -1,4 +1,4 @@
-openapi: 3.0.0
+openapi: 3.0.3
 info:
   title: Simple Enum Test API
   version: 1.0.0
@@ -28,12 +28,29 @@ components:
     MaritalStatus:
       type: string
       enum:
-        - MARRIED
-        - SINGLE
-        - DIVORCED
-        - WIDOWED
-      x-enum-labels:
-        MARRIED: "Женат / За мужем"
-        SINGLE: "Холост / Не замужем"
-        DIVORCED: "Разведен(а)"
-        WIDOWED: "Вдовец / Вдова"
+        - "Женат / За мужем"
+        - "Холост / Не замужем"
+        - "Разведен(а)"
+        - "Вдовец / Вдова"
+      x-enum-varnames:
+        - "MARRIED"
+        - "SINGLE"
+        - "DIVORCED"
+        - "WIDOWED"
+
+
+    WeatherType:
+      type: integer
+      format: int32
+      enum:
+        - 42
+        - 18
+        - 56
+      x-enum-descriptions:
+        - 'Blue sky'
+        - 'Slightly overcast'
+        - 'Take an umbrella with you'
+      x-enum-varnames:
+        - Sunny
+        - Cloudy
+        - Rainy
